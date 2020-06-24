@@ -50,14 +50,51 @@ $(document).ready(function () {
             var x2 = (-b+delta**0.5)/(2*a);
             $("#x0").text("x1 = " + x1 + " | x2 = " + x2);
         }
+
+        aTemp = a
+        bTemp = b
+        cTemp = c
+
+        if (parseFloat(a)===1) { aTemp = ""}
+
+        if (delta<0) {
+            $("#product").text("no roots");
+        } else if (delta===0) {
+            if (p<0) {
+                var sign1 = "+";
+                var p = p*(-1);
+            } else {
+                var sign1 = "-";
+            }
+            $("#product").text("y = " + aTemp + "(x"+ sign1 + p + ")^2");
+        } else {
+            if (x1<0) {
+                var sign1 = "+";
+                var x1 = x1*(-1);
+            } else {
+                var sign1 = "-";
+            }
+            if (x2<0) {
+                var sign2 = "+";
+                var x2 = x2*(-1);
+            } else {
+                var sign2 = "-";
+            }
+            $("#product").text("y = " + aTemp + "(x"+ sign1 + x1 + ")(x" + sign2 + x2 + ")");
+        }
+
         var addSign = "x + "
-        if (parseFloat(a)===1) { a = ""}
-        if (parseFloat(b)===1) { b = ""}
+        aTemp = a
+        bTemp = b
+        cTemp = c
+        if (parseFloat(a)===1) { aTemp = ""}
+        if (parseFloat(b)===1) { bTemp = ""}
         if (parseFloat(c)===0) {
-            c = ""
+            cTemp = ""
             var addSign = "x"
         }
-        $("#formula").text(a + "x^2 + " + b + addSign + c + " = 0");
+        $("#formula").text(aTemp + "x^2 + " + bTemp + addSign + cTemp + " = 0");
+
 
         });
 });
